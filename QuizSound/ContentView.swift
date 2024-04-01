@@ -6,12 +6,24 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct ContentView: View {
+    @State var player: AVAudioPlayer?
+    
     var body: some View {
         VStack {
             Spacer()
             Button {
+                if let soundData = NSDataAsset(name: "questions") {
+                    do {
+                    player = try AVAudioPlayer(data: soundData.data)
+                    player?.play()
+                    } catch {
+                    print("音楽実行エラー")
+                    }
+                }
+                
             } label: {
                 Text("クイズ出題")
                     .font(.largeTitle)
@@ -23,6 +35,15 @@ struct ContentView: View {
             }
             Spacer()
             Button {
+                if let soundData = NSDataAsset(name: "thinking") {
+                    do {
+                        player = try AVAudioPlayer(data: soundData.data)
+                        player?.play()
+                    } catch {
+                        print("音楽実行エラー")
+                    }
+                }
+                
             } label: {
                 Text("シンキングタイム\n(10秒)")
                 .font(.largeTitle)
@@ -36,6 +57,16 @@ struct ContentView: View {
             Spacer()
             HStack {
                 Button {
+                    if let soundData = NSDataAsset(name: "correct") {
+                        do {
+                            player = try AVAudioPlayer(data: soundData.data)
+                            player?.play()
+                        } catch {
+                            print("音楽実行エラー")
+                        }
+                    }
+                    
+
                 } label: {
                 Image(systemName: "circle")
                     .resizable()
@@ -46,6 +77,16 @@ struct ContentView: View {
                     .cornerRadius(10)
                 }
                 Button {
+                    if let soundData = NSDataAsset(name: "incorrect") {
+                        do {
+                            player = try AVAudioPlayer(data: soundData.data)
+                            player?.play()
+                        } catch {
+                            print("音楽実行エラー")
+                        }
+                    }
+                    
+
                 } label: {
                 Image(systemName: "xmark")
                     .resizable()
