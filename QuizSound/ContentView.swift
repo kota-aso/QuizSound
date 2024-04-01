@@ -102,6 +102,18 @@ struct ContentView: View {
         }
         .padding()
     }
+    
+    func playSound(fileName: String) {
+        if let soundData = NSDataAsset(name: fileName) {
+        do {
+            player = try AVAudioPlayer(data: soundData.data)
+            player?.play()
+        } catch {
+            print("音楽実行エラー")
+        }
+        }
+    }
+
 }
 
 struct ContentView_Previews: PreviewProvider {
